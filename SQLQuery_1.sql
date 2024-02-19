@@ -148,6 +148,27 @@ select e.emp_Id, e.emp_Name, e.emp_Salary, d.dept_Name,d.dept_Location
 from EMPLOYEE as e RIGHT OUTER JOIN DEPARTMENT as d 
 ON e.emp_deptId=d.dept_Id; 
 
+select Top(3) *from EMPLOYEE WHERE emp_Salary>30000;
+
+-- FUll Outer Join - it will return records with combination of left-hand table and right-hand table
+select e.emp_Id, e.emp_Name, e.emp_Salary, d.dept_Name,d.dept_Location 
+from EMPLOYEE as e FULL OUTER JOIN DEPARTMENT as d 
+ON e.emp_deptId=d.dept_Id; 
+
+--SubQuery
+SELECT *from EMPLOYEE;
+SELECT emp_Salary from EMPLOYEE where emp_Name='MIKE';
+--Display name,salary of the employees whose salary is greater than Mike's salary 
+SELECT emp_Name,emp_Salary FROM EMPLOYEE  WHERE emp_Salary> (SELECT emp_Salary from EMPLOYEE where emp_Name='MIKE');
+
+--Display name,salary of the employees whose salary is greater than Adam' salary  and deptno same as Adam's deptno.
+
+SELECT emp_Name, emp_Salary from EMPLOYEE 
+where emp_Salary> (SELECT emp_salary from EMPLOYEE where emp_Name='ADAM') and emp_deptId=(select emp_deptId from EMPLOYEE WHERE emp_Name='ADAM');
+-- Display the employee information whose department is located at New York
+select emp_Id, emp_Name,emp_Salary,emp_deptId, dept_Name,dept_Location from EMPLOYEE LEFT JOIN DEPARTMENT
+ON EMPLOYEE.emp_deptId=DEPARTMENT.dept_Id WHERE dept_Location='NEWYORK' ;
 
 
 
+ 
